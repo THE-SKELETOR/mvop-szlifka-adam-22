@@ -1,11 +1,12 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
+import Button from './colors'
 
 
 const ButtonClick = () => {
     const [requests, setRequests] = useState([])
     const [loading, setLoading] = useState(true)
-
+    
     useEffect(() => {
       response()
     }, [])
@@ -33,9 +34,13 @@ const ButtonClick = () => {
             <div>
                 {requests.length > 0 && (
                     <ul>
-                    {requests.map(request => (
-                        <div className="bg-blue-500" key={request.route_id}>{request.route_color} {request.route_long_name} {request.route_short_name}</div>
-                    ))}
+                        {requests.map(request => (
+                            <li key={request.route_id} className='grid grid-cols-6 w-3/4 mx-auto'>
+                                <a href={`${request.route_url}`} className="" style={{backgroundColor: `#${request.route_color}`}}>{request.route_id}</a>
+                                <div className="col-span-4" style={{backgroundColor: `#${request.route_color}`}}>{request.route_long_name}</div>
+                                <div className="" style={{backgroundColor: `#${request.route_color}`}}>{request.route_short_name}</div>
+                            </li>
+                        ))}
                     </ul>
                 )}
             </div>
